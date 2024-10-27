@@ -1,4 +1,4 @@
-# Moduuli 10, Tehtävä 1
+# Moduuli 10, tehtävä 3
 
 class Hissi:
     def __init__(self, alin_kerros, ylin_kerros):
@@ -32,7 +32,32 @@ class Hissi:
             self.kerros_alas()
         print(f"Hissi on saapunut kerrokseen {kohde_kerros}")
 
+class Talo:
+    def __init__(self, alin_kerros, ylin_kerros, hissien_lkm):
+        self.alin_kerros = alin_kerros
+        self.ylin_kerros = ylin_kerros
+        self.hissit = [Hissi(alin_kerros, ylin_kerros) for _ in range(hissien_lkm)]  # Luo hissit listaan
+
+    def aja_hissiä(self, hissin_numero, kohde_kerros):
+        if hissin_numero < 1 or hissin_numero > len(self.hissit):
+            print("Virhe: Hissin numero on virheellinen.")
+            return
+        print(f"Ajetaan hissiä {hissin_numero} kohdekerrokseen {kohde_kerros}")
+        self.hissit[hissin_numero - 1].siirry_kerrokseen(kohde_kerros)
+
+    def palohälytys(self):
+        print("Palohälytys! Kaikki hissit siirtyvät pohjakerrokseen.")
+        for index, hissi in enumerate(self.hissit, start=1):
+            print(f"Ajetaan hissiä {index} pohjakerrokseen.")
+            hissi.siirry_kerrokseen(self.alin_kerros)
+
 # Pääohjelma
-h = Hissi(1, 10)
-h.siirry_kerrokseen(5)
-h.siirry_kerrokseen(1)
+talo = Talo(1, 10, 3)
+
+# Ajetaan hissejä eri kerroksiin
+talo.aja_hissiä(1, 5)
+talo.aja_hissiä(2, 8)
+talo.aja_hissiä(3, 3)  
+
+# Palohälytys: kaikki hissit siirtyvät pohjakerrokseen
+talo.palohälytys()
