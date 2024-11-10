@@ -10,7 +10,6 @@ def get_db_connection():
     password='3452',
 )
 
-
 @app.route('/kenttä/<icao>', methods=['GET'])
 def get_airport(icao):
     conn = get_db_connection()

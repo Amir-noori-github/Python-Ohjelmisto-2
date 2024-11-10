@@ -28,4 +28,3 @@ if __name__ == '__main__':
 # Tulostetaa saadut vastaukset web_sivulle
 #http://localhost:3000/alkuluku/31
 # {"Number":31,"isPrime":true}
-
